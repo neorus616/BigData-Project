@@ -50,6 +50,43 @@ function to_receipt(receipt_id, date, time, shop_name, shop_cashier_name, shop_c
 		"total": total
     };
 }
-// console.log( to_receipt(123) );
 
-console.log(to_items(3, ['Apple', 'Orange', 'Banana'], [1, 2, 3], [3, 5, 7], [4, 10, 21]));
+
+//Insert recipt to db
+function insert_to_db(document) {
+	// URL at which MongoDB service is running
+	var url = "mongodb://localhost:27017";
+	
+	// A Client to MongoDB
+	var MongoClient = require('mongodb').MongoClient;
+	
+	// Make a connection to MongoDB Service
+	MongoClient.connect(url, function(err, db) {
+		if (err) throw err;
+
+		console.log("Connected to MongoDB!");
+
+
+		var dbo = db.db("big-data");
+		/*
+		dbo.collection("receipts").find({}).toArray(function(err, result) {
+			if (err) throw err;
+			console.log(result);
+		});
+		*/
+
+		dbo.collection("receipts").insertOne(document, function(err, res) {
+			if (err) throw err;
+			console.log("1 document inserted");
+		});
+
+		db.close();
+	}); //end mongo connect
+	
+}
+
+insert_to_db();
+
+//Tests -------- do not delete!
+// console.log( to_receipt(123) );
+//console.log(to_items(3, ['Apple', 'Orange', 'Banana'], [1, 2, 3], [3, 5, 7], [4, 10, 21]));
