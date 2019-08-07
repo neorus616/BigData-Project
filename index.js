@@ -3,8 +3,10 @@
 var express = require('express');
 var bodyParser  = require('body-parser');
 var app = express();
+var formidable = require('formidable'); //Form-base file upload handler
+var fs = require('fs'); //save file to server
 
-const PORT = 3000 //Remember to port forward 80:3000 in router's settings
+const PORT = 3000;
 
 
 
@@ -46,6 +48,20 @@ app.get('/upload', function(req, res) {
 });
 
 // ------------------ POST ------------------
+app.post('/fileupload', function(req, res) {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+		var oldpath = files.filetoupload.path;
+		var newpath = '/home/shlomi/Desktop/111111111111' + files.filetoupload.name;
+
+		fs.rename(oldpath, newpath, function (err) {
+		  if (err) throw err;
+
+		});
+		res.write('File uploaded and moved!');
+      	res.end();
+    });
+});    
 /*
 app.post('/register', (req, res) => {
     var r = require('./app/register');
