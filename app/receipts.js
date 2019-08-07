@@ -63,10 +63,6 @@ function insert_to_db(document) {
 	// Make a connection to MongoDB Service
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
-
-		console.log("Connected to MongoDB!");
-
-
 		var dbo = db.db("big-data");
 		/*
 		dbo.collection("receipts").find({}).toArray(function(err, result) {
@@ -85,7 +81,16 @@ function insert_to_db(document) {
 	
 }
 
-insert_to_db();
+//app.js
+var mongo = require('./mongo.js'); 
+var db;
+mongo.connect(function(error, my_db_connect) {
+	if(error) throw error;
+	var db = my_db_connect;
+	db.collection('receipts').find({});
+});
+//db.collection('receipts').find();
+//console.log(db.collection('receipts').find());
 
 //Tests -------- do not delete!
 // console.log( to_receipt(123) );

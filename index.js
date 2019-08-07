@@ -9,6 +9,7 @@ var fs = require('fs'); //save file to server
 const PORT = 3000;
 
 
+var recipts_datalake_path = "/home/shlomi/Desktop/HDFS/recipts/"
 
 
 // ----------- Initilize the express engine -----------
@@ -52,13 +53,13 @@ app.post('/fileupload', function(req, res) {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
 		var oldpath = files.filetoupload.path;
-		var newpath = '/home/shlomi/Desktop/111111111111' + files.filetoupload.name;
+		var newpath = recipts_datalake_path + files.filetoupload.name;
 
 		fs.rename(oldpath, newpath, function (err) {
 		  if (err) throw err;
 
 		});
-		res.write('File uploaded and moved!');
+		res.write('File uploaded!');
       	res.end();
     });
 });    
