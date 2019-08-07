@@ -1,0 +1,27 @@
+{
+    "receipt-id": 12345,
+    "date": "2019-08-07",
+    "time": "11:10:34",
+    "shop": {
+        "name": "TWENTY FOUR SEVEN",
+        "cashier-name": "Shlomi",
+        "cashier-desk-number": 1
+    },
+    "payment": "cash",
+    "coin": "shekel",
+    "items": [
+        {
+            "description":"Milk",
+            "amount": 2,
+            "price": 5,
+            "total": 10
+        },
+        {
+            "description":"Bread",
+            "amount": 1,
+            "price": 5,
+            "total": 5
+        }
+    ],
+    "total": 15
+}
