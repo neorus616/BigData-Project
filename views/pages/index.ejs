@@ -1,0 +1,39 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    Hello world
+	<h2>Variable</h2>
+    <p><%= tagline %></p>
+    <li><a href="www.google.com">google.com</a></li>
+    <h2>Loop</h2>
+    <table border="1">
+        <% drinks.forEach(function(drink) { %>
+            <tr>
+                <td>
+                    <%= drink.drunkness %>
+                </td>
+                <td>
+                    <%= drink.name %>  
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>

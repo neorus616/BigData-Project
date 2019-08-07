@@ -1,5 +1,7 @@
-sudo apt install mongodb npm
+sudo apt install mongodb npm 
 
-npm install
+sudo npm install -g nodemon
+
+sudo npm install
 
 mongo < setup-db.js
