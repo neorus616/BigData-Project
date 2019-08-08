@@ -53,6 +53,7 @@ function to_receipt(receipt_id, date, time, shop_name, shop_cashier_name, shop_c
 }
 
 
+//Does not check format
 //Insert recipt to db
 function insert_to_db(document) {
 	// URL at which MongoDB service is running
@@ -144,6 +145,7 @@ function preprocess_recipt_json(str) {
 				}
 			}//end for
 			if(sum == total) {
+				insert_to_db(json);
 				return true;
 			} else {
 				return false;
