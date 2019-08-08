@@ -109,6 +109,51 @@ function preprocess_recipt_json(str) {
 	console.log("----------");
 	console.log(payment);
 	console.log("----------");
+	console.log(coin);
+	console.log("----------");
+	console.log(items);
+	console.log("----------");
+	console.log(total);
+	console.log("----------");
+	
+	if(receipt_id && date && time && shop && payment && coin && items && total) {
+
+		//Check shop
+		var shop_name = shop["name"];
+		var shop_cashier_name = shop["cashier-name"];
+		var shop_cashier_desk_number = shop["cashier-desk-number"];
+		console.log("Checking shop");
+		if(shop_name && shop_cashier_name && shop_cashier_desk_number) {
+			//Checking items
+			var items_len = items.length;
+			if( ! items_len) return false;
+
+			var sum = 0; //Check if sum is equal to 'total' at the end of calculation
+			for(var i = 0; i < items_len; i++) {
+				var item = items[i];
+				//Per item...
+				var desc = item["description"];
+				var amount = item["amount"];
+				var price = item["price"];
+				var item_total = item["total"];
+
+				if(desc && amount && price && item_total) {
+					sum += price * amount;
+				} else {
+					return false;
+				}
+			}//end for
+			if(sum == total) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
 
 }
 

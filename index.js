@@ -70,7 +70,7 @@ app.post('/fileupload', function(req, res) {
 			fs.writeFileSync(newpath, data);
 			console.log("Successfuly saved recipt to disk.")
 
-			res.write('File uploaded!');
+			res.write('File uploaded and is correct format!');
 			res.end();
 		} else {
 			res.write('File is not a valid JSON!');
