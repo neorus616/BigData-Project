@@ -52,37 +52,6 @@ function to_receipt(receipt_id, date, time, shop_name, shop_cashier_name, shop_c
     };
 }
 
-
-//Does not check format
-//Insert recipt to db
-function insert_to_db(document) {
-	// URL at which MongoDB service is running
-	var url = "mongodb://localhost:27017";
-	
-	// A Client to MongoDB
-	var MongoClient = require('mongodb').MongoClient;
-	
-	// Make a connection to MongoDB Service
-	MongoClient.connect(url, function(err, db) {
-		if (err) throw err;
-		var dbo = db.db("big-data");
-		/*
-		dbo.collection("receipts").find({}).toArray(function(err, result) {
-			if (err) throw err;
-			console.log(result);
-		});
-		*/
-
-		dbo.collection("receipts").insertOne(document, function(err, res) {
-			if (err) throw err;
-			console.log("1 document inserted");
-		});
-
-		db.close();
-	}); //end mongo connect
-	
-}
-
 //Preprocess string, check that is valid JSON, then check if valid receipt JSON format
 function preprocess_recipt_json(str) {
 	var isJSON = isJson(str);

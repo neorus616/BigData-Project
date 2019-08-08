@@ -53,7 +53,8 @@ function random_receipt() {
     var num_of_items = random_floor(1, 6);
     var items = new Array();
     for(var i = 0; i < num_of_items; i++) {
-        var item = items_possibility[random_floor(0, items_possibility.length + 1)];
+        var pos = random_floor(0, items_possibility.length);
+        var item = items_possibility[pos];
         var desc = item["d"];
         var price = item["p"];
 
@@ -120,8 +121,9 @@ function random_string(length) {
        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
- }
+}
 
 
-
-console.log(random_receipt());
+module.exports = {
+    random_receipt
+};
