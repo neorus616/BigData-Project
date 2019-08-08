@@ -82,8 +82,34 @@ function insert_to_db(document) {
 	
 }
 
+//Preprocess string, check that is valid JSON, then check if valid receipt JSON format
 function preprocess_recipt_json(str) {
-	return isJson(str);
+	var isJSON = isJson(str);
+	if(isJSON == false)
+		return false;
+
+	var json = JSON.parse(str);
+	console.log("Printing json:....");
+	var receipt_id = json["receipt-id"];
+	var date = json["date"];
+	var time = json["time"];
+	var shop = json["shop"];
+	var payment = json["payment"];
+	var coin = json["coin"];
+	var items = json["items"];
+	var total = json["total"];
+
+	console.log(receipt_id);
+	console.log("----------");
+	console.log(date);
+	console.log("----------");
+	console.log(time);
+	console.log("----------");
+	console.log(shop);
+	console.log("----------");
+	console.log(payment);
+	console.log("----------");
+
 }
 
 function isJson(str) {

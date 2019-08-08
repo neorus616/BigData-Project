@@ -1,7 +1,0 @@
-{
-    "test": 1,
-    "test 2": 2,
-    "ABC": [
-        {"key1": "vakue1"},{"key2":"value2"}
-    ]
-}
