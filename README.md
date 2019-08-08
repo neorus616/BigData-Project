@@ -1,6 +1,9 @@
 # BigData-Project
 BigData project for BigData course in Ariel University.
 
+MVC - Model, View, Controller
+Model of database and logic, View of dynamic template library EJS, Controller controls routes of website and RESTful API
+
 # Setup
 Run:
 

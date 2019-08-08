@@ -188,3 +188,5 @@ mongo.connect(function(error, my_db_connect) {
 //Tests -------- do not delete!
 // console.log( to_receipt(123) );
 //console.log(to_items(3, ['Apple', 'Orange', 'Banana'], [1, 2, 3], [3, 5, 7], [4, 10, 21]));
+
+
