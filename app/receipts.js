@@ -1,6 +1,7 @@
 
 
-
+//Inout: Number of items, Array of descriptions/amounts/prices/totals
+//Output: Items json
 function to_items(num_of_items, descriptions, amounts, prices, totals) {
 	var arr = new Array();
 	for(var i = 0; i < num_of_items; i++) {
@@ -81,7 +82,18 @@ function insert_to_db(document) {
 	
 }
 
+function preprocess_recipt_json() {
+	console.log("preprocessing");
+
+	return false;
+}
+
+module.exports = {
+	preprocess_recipt_json
+};
+
 //app.js
+/*
 var mongo = require('./mongo.js'); 
 var db;
 mongo.connect(function(error, my_db_connect) {
@@ -89,6 +101,7 @@ mongo.connect(function(error, my_db_connect) {
 	var db = my_db_connect;
 	db.collection('receipts').find({});
 });
+*/
 //db.collection('receipts').find();
 //console.log(db.collection('receipts').find());
 

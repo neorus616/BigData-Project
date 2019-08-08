@@ -5,6 +5,8 @@ var bodyParser  = require('body-parser');
 var app = express();
 var formidable = require('formidable'); //Form-base file upload handler
 var fs = require('fs'); //save file to server
+var recipts = require('./app/receipts');
+
 
 const PORT = 3000;
 
@@ -49,20 +51,36 @@ app.get('/upload', function(req, res) {
 });
 
 // ------------------ POST ------------------
+//When user upload file, it is redirected here.
 app.post('/fileupload', function(req, res) {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
 		var oldpath = files.filetoupload.path;
-		var newpath = recipts_datalake_path + files.filetoupload.name;
+		var newpath = recipts_datalake_path + files.filetoupload.name; //TODO: If multiple users upload files with SAME NAME then the computer will override. Need to find a good name for each file so that it will be unique. MAybe timestamp ?
 
+		//Read file before uploading it
+		fs.readFile(oldpath, {encoding: 'utf-8'}, function(err,data){
+			if(err) 
+				throw err;
+			console.log('received data: ' + data);
+			console.log(data);
+
+			//Preprocess JSON to make sure it is valid
+			recipts.preprocess_recipt_json(data);
+		});
+
+
+
+
+//TODO: Uncomment this code
+/*
 		fs.rename(oldpath, newpath, function (err) {
 		  if (err) throw err;
 
 		});
+		*/
 		res.write('File uploaded!');
-		  res.end();
-		  
-		  //TODO: File to database
+		res.end();
     });
 });    
 /*
