@@ -4,6 +4,7 @@
   "description": "BigData project for BigData course in Ariel University.",
   "main": "index.js",
   "dependencies": {
+    "chart.js": "^2.8.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "formidable": "^1.2.1",

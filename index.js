@@ -51,6 +51,16 @@ app.get('/upload', function(req, res) {
     res.render('pages/upload');
 });
 
+
+app.get('/statistics', function(req, res) {
+	res.render('pages/statistics');
+	
+});
+
+app.get('/test', function(req, res) {
+	res.render('pages/test');
+});
+
 // ------------------ POST ------------------
 //When user upload file, it is redirected here.
 app.post('/fileupload', function(req, res) {
