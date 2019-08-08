@@ -11,7 +11,8 @@ var recipts = require('./app/receipts');
 const PORT = 3000;
 
 
-var recipts_datalake_path = "/home/shlomi/Desktop/HDFS/recipts/"
+//var recipts_datalake_path = "/home/shlomi/Desktop/HDFS/recipts/"
+var recipts_datalake_path = "."; //Root folder directories do not work. You need permissions to write. Need to check other options. HDFS should do the work.
 
 
 // ----------- Initilize the express engine -----------
@@ -59,28 +60,24 @@ app.post('/fileupload', function(req, res) {
 		var newpath = recipts_datalake_path + files.filetoupload.name; //TODO: If multiple users upload files with SAME NAME then the computer will override. Need to find a good name for each file so that it will be unique. MAybe timestamp ?
 
 		//Read file before uploading it
-		fs.readFile(oldpath, {encoding: 'utf-8'}, function(err,data){
-			if(err) 
-				throw err;
-			console.log('received data: ' + data);
-			console.log(data);
+		var data = fs.readFileSync(oldpath);
+		console.log(data.toString());
+		//Preprocess JSON to make sure it is valid
+		var go = recipts.preprocess_recipt_json(data.toString());
+		//If JSON is correct and valid
+		if(go) {
+			//var res = fs.renameSync(oldpath, newpath);
+			fs.writeFileSync(newpath, data);
+			console.log("Successfuly saved recipt to disk.")
 
-			//Preprocess JSON to make sure it is valid
-			recipts.preprocess_recipt_json(data);
-		});
+			res.write('File uploaded!');
+			res.end();
+		} else {
+			res.write('File is not a valid JSON!');
+			res.end();
+		}
 
 
-
-
-//TODO: Uncomment this code
-/*
-		fs.rename(oldpath, newpath, function (err) {
-		  if (err) throw err;
-
-		});
-		*/
-		res.write('File uploaded!');
-		res.end();
     });
 });    
 /*

@@ -82,10 +82,17 @@ function insert_to_db(document) {
 	
 }
 
-function preprocess_recipt_json() {
-	console.log("preprocessing");
+function preprocess_recipt_json(str) {
+	return isJson(str);
+}
 
-	return false;
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
 }
 
 module.exports = {
