@@ -39,7 +39,7 @@ function insert_random_receipts_to_db(amount) {
   }
 }
 
-insert_random_receipts_to_db(100);
+//insert_random_receipts_to_db(100); //Use it in a function or somewhere
 
 module.exports = {
     connect
