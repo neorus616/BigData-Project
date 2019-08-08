@@ -60,7 +60,9 @@ app.post('/fileupload', function(req, res) {
 
 		});
 		res.write('File uploaded!');
-      	res.end();
+		  res.end();
+		  
+		  //TODO: File to database
     });
 });    
 /*
