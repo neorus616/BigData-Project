@@ -13,11 +13,19 @@
 </header>
 
 <main>
-<div class="container">
-    <canvas id="myChart"></canvas>
-    </div>
 
-    <script>
+
+<style>
+    canvas {
+        width: 1500px !important;
+        height: 600px !important;
+    }    
+</style>
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
     let myChart = document.getElementById('myChart').getContext('2d');
 
     // Global Options
@@ -32,27 +40,27 @@
         datasets:[{
             label:'Population',
             data:[
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-            ],
-            //backgroundColor:'green',
-            backgroundColor:[
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)',
-            'rgba(255, 99, 132, 0.6)'
-            ],
-            borderWidth:2,
-            borderColor:'#777',
-            hoverBorderWidth:4
-        }]
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+                ],
+                //backgroundColor:'green',
+                backgroundColor:[
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(255, 99, 132, 0.6)'
+                ],
+                borderWidth:2,
+                borderColor:'#777',
+                hoverBorderWidth:4
+            }]
         },
         options:{
         title:{
@@ -68,7 +76,9 @@
             }
         },
         layout:{
-            padding: 200
+            padding: {
+                right: 1
+            }
         },
         tooltips:{
             enabled:true
